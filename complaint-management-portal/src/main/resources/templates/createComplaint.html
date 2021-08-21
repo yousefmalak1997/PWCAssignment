@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Complaint</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+</head>
+<body>
+    <div class="jumbotron text-center">
+        <h1>Create Complaint</h1>
+        <br>
+        <a href="/home">Home</a>
+        <br>
+        <a href="/logout">Logout</a>
+    </div>
+    <div class="container">
+        <form class="form-horizontal" action="/action_page.php">
+            <div class="form-group">
+                <label class="control-label col-sm-4" for="comName">Complaint Name:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="Complaint Name" name="complaintName" id="comName">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-4" for="comDes">Complaint Description:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="comDes" placeholder="Complaint Description" name="complaintDesc">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-4" for="comDes">Complaint Reason:</label>
+                <div class="col-sm-10">
+                    <select name="complaintReasons" class="form-control">
+                        <option value="">Default select</option>
+                        <option value="test">test</option>
+                    </select>
+                </div>
+            </div>
+<!--            <div class="form-group">-->
+<!--                <div class="form-check">-->
+<!--                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked style="padding_left">-->
+<!--                    <label class="form-check-label" for="exampleRadios1">-->
+<!--                        Default radio-->
+<!--                    </label>-->
+<!--                </div>-->
+<!--                <div class="form-check">-->
+<!--                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">-->
+<!--                    <label class="form-check-label" for="exampleRadios2">-->
+<!--                        Second default radio-->
+<!--                    </label>-->
+<!--                </div>-->
+<!--            </div>-->
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="button" id="submit1" class="btn btn-primary btn-block" >Create Complaint</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+
+		$('#submit1').click(function(event){
+	        var complaint_name = $("input[name='complaintName']").val();
+	        var complaint_desc = $("input[name='complaintDesc']").val();
+	        var complaint_reasons = $( "select[name='complaintReasons'] option:selected" ).text();
+
+            var settings = {
+                "url": "http://localhost:8080/complaints/add",
+                "method": "POST",
+                "timeout": 0,
+                "headers": {
+                "Content-Type": "application/json"
+                },
+                "data": JSON.stringify({"complaintName":complaint_name,"complaintDesc":complaint_desc,"complaintReasons":complaint_reasons}),
+            };
+
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+            });
+
+
+        });
+	});
+</script>

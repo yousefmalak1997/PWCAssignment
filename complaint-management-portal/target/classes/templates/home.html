@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+</head>
+<body>
+    <div class="jumbotron text-center">
+        <h1>Home Page</h1>
+        <br>
+        <a href="/logout">Logout</a>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>View your Complaints</h3>
+                <p>If you would like to view your complaints current status please open this link.</p>
+                <p><a href="/viewComplaints">View Complaints</a></p>
+            </div>
+            <div class="col-sm-6">
+                <h3>Create Complaint</h3>
+                <p>if you would like to add a new complaint please click here.</p>
+                <p><a href="/createComplaint">Create Complaint</a></p>
+            </div>
+            <span sec:authentication="principal.authorities"></span>
+        </div>
+    </div>
+</body>
+</html>
